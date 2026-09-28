@@ -1,0 +1,70 @@
+---
+import TopBar from './TopBar.astro';
+
+import ReviewCard from './ReviewCard.astro';
+import Card from './Card.astro';
+
+import CaptionedImage from './CaptionedImage.astro';
+
+
+const reviews = [
+	{ stars: 5, message: 'They carried 18 desks up two flights of stairs and assembled everything without leaving a scrap of cardboard.', person: 'Sarah Jenkins', company: 'Kembrey Park', rotation: 'rotate-1' },
+	{ stars: 4, message: 'They carried 18 desks up two flights of stairs and assembled everything without leaving a scrap of cardboard.', person: 'Sarah Jenkins', company: 'Kembrey Park', rotation: '-rotate-1' },
+	{ stars: 3, message: 'They carried 18 desks up two flights of stairs and assembled everything without leaving a scrap of cardboard.', person: 'Sarah Jenkins', company: 'Kembrey Park', rotation: 'rotate-2' },
+]
+---
+
+<div id="container" class="bg-blue-50 h-full flex flex-col gap-10 items-center text-gray-800">
+	<TopBar/>
+
+	<main class="max-w-6xl flex flex-col px-5 w-full gap-16">
+		<Card>
+			<div class="flex lg:flex-row flex-col lg:gap-12 gap-6">
+				<div class="flex flex-col gap-6 flex-3">
+					<h2 class="text-4xl font-bold">
+						Proper Office Fitting<br/>
+						Without the Corporate Drama.
+					</h2>
+
+					<p>Top Notch delivers, builds, and positions office furniture for commercial spaces across Wiltshire. We bring the tools, manpower, and care so your team can focus on work.</p>
+
+					<button class="bg-blue-400 text-white w-fit px-6 py-2 rounded-lg">Talk to the fitting crew</button>
+				</div>
+
+				<div class="flex-2">
+					<CaptionedImage caption="24 workstations built & levelled before 5pm"/>
+				</div>
+			</div>
+		</Card>
+
+		<section class="w-full flex flex-col gap-6">
+			<h2 class="font-bold text-2xl">Direct Words from Local Clients</h2>
+
+			<div class="flex gap-10 w-full lg:flex-row flex-col">
+				{reviews.map(({rotation, ...review}) => <div class={rotation + " hover:rotate-0 transition duration-200"}><ReviewCard {...review}/></div>)}
+			</div>
+		</section>
+
+		<Card>
+			<div class="flex flex-col gap-6">
+				<div class="flex flex-col">
+					<p class="uppercase text-gray-300 font-bold">Case Log #01</p>
+					<h2 class="font-bold text-2xl">Kembrey Park Tech Expansion</h2>
+				</div>
+
+				<hr class="border-gray-200 py-2"/>
+
+				<div class="flex flex-col lg:flex-row gap-6 lg:items-center">
+					<div class="flex flex-1">
+						<CaptionedImage caption="Dual monitor arms fitted & cabled!"/>
+					</div>
+					<div class="flex flex-col gap-2 flex-1">
+						<p><b>The brief:</b> Supply and install 20 height-adjustable desks before new employees arrived on Monday.</p>
+						<p><b>How Top Notch Handled It:</b> Our 3-man fitting team completed assembly, cable tray mounting, and packaging clearance in 6.5 hours.</p>
+						<p class="bg-blue-100 border-blue-200 px-5 py-3 rounded-lg"><b>Result:</b> Zero workplace downtime and 100% of packaging recycled locally. </p>
+					</div>
+				</div>
+			</div>
+		</Card>
+	</main>
+</div>
